@@ -6,41 +6,27 @@ let estoque = {
    ],
     'maria': [ 
        {'tipo': "maca", 'qtd': 2},
-       {'tipo': "pera", 'qtd': 4},
+       {'tipo': "banana", 'qtd': 4},
     ]
    };
    
    export function getEstoque(){
        return structuredClone(estoque);
    }
-   export function transacao(origem, destino, quantidade, fruta) {
-    if(origem === 'pomar') {
-       const pessoa =  estoque[destino];
-       for (let i=0; i < pessoa.length; i++) {
-        const monte = pessoa[i];
-        if(monte.tipo === fruta){
-            monte = pessoa[i];
-            break;
-        }
-        if(!monte ) {
-            monte = {'tipo': fruta, 'qtd':0};
-            pessoa.push(monte);
-        }
-        monte.qtd += quantidade;
+   export function transacao(origem, destino, quantidade, fruta){
+    if(origem === destino) { return; }
+    if(quantidade <= 0){
         return;
-       }
     }
-
-    if(destino === "pomar") {
-        const pessoa = estoque[origem];
-        let monte;
-        for (let i=0; i < pessoa.length; i++) {
-            const monte = pessoa[i];
-            if(monte.tipo === fruta){
-                 monte = pessoa[i];
-                 break;
-             }
+    if(origem === 'pomar'){
+        dePomarParaPessoa(destino, quantidade, fruta);
     }
+        
+    if(destino === "pomar"){
+        dePessoaParaPomar(origem, quantidade, fruta);   
+        }
+    }
+    
     if (!monte) {
         return;
     }
