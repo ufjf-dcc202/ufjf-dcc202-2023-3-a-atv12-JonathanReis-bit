@@ -56,6 +56,7 @@ let estoque = {
                 if(!monte){
                     return;
                 }
+            }
                 monte.qtd -= Math.min(quantidade, monte.qtd);
    
    // export {getEstoque}
