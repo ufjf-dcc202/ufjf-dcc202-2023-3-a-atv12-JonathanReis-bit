@@ -4,6 +4,14 @@ import {getEstoque,transacao} from "./estoque.js";
 
 
 document.entrada.addEventListener('submit', leFormulario);
+document.entrada.reset();
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('buttonLimparLista').addEventListener('click', () => {
+        limpaEstoque();
+        atualizaTela();
+    });
+});
 
 //leFormulario();
 
@@ -20,9 +28,9 @@ function leFormulario(event) {
     const origem = document.entrada.origem.value;
     const destino = document.entrada.destino.value;
 
-    console.log(`Solicitado: ${origem} doa ${quantidade} ${fruta} para ${destino}`);
-    //document.entrada.submit();
-    transacao (origem, destino, quantidade, fruta)
+    console.log(`${origem} doa ${quantidade} ${fruta} para ${destino}`);
+    
+    transacaoNoEstoque(origem, destino, quantidade, fruta)
     atualizaTela()
     
 }
