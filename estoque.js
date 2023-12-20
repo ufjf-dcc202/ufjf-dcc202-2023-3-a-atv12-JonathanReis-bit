@@ -43,5 +43,19 @@ let estoque = {
             monte.qtd += quantidade;
             return;
         }
+
+        function dePessoaParaPomar(origem, quantidade, fruta){
+            const pessoa = estoque[origem];
+                    let monte;
+                    for(let i = 0; i < pessoa.length; i++){
+                        if(pessoa[i].tipo === fruta){
+                            monte = pessoa[i];
+                            break;
+                        }
+                    }    
+                if(!monte){
+                    return;
+                }
+                monte.qtd -= Math.min(quantidade, monte.qtd);
    
    // export {getEstoque}
